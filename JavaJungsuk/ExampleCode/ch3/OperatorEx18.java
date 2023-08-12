@@ -1,4 +1,4 @@
-package Java의정석.ch3;
+package ExampleCode.ch3;
 
 //Math.round() 메서드를 사용해서 반올림하는 방법
 

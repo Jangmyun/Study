@@ -1,4 +1,4 @@
-package Java의정석.ch2;
+package ExampleCode.ch2;
 
 public class VariableEx2 {
     public static void main(String[] args) {

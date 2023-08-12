@@ -1,4 +1,4 @@
-package Java의정석.ch3;
+package ExampleCode.ch3;
 
 public class OperatorEx1 {
     public static void main(String[] args) {

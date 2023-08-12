@@ -1,4 +1,4 @@
-package Java의정석.ch4;
+package ExampleCode.ch4;
 
 public class FlowEx12 {
     public static void main(String[] args) {

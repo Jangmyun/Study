@@ -1,4 +1,4 @@
-package Java의정석.ch4;
+package ExampleCode.ch4;
 import java.util.Scanner;
 
 public class FlowEx25 {

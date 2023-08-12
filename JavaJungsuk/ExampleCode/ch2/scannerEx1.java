@@ -1,4 +1,4 @@
-package Java의정석.ch2;
+package ExampleCode.ch2;
 import java.util.Scanner;     //Scanner 사용하려면 이 구문 추가해야됨
 
 public class scannerEx1 {
