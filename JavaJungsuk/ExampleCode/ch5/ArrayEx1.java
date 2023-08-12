@@ -1,4 +1,4 @@
-package Java의정석.ch5;
+package ExampleCode.ch5;
 
 /**
  * ArrayEx1
