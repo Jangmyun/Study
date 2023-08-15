@@ -27,10 +27,10 @@ public class TvTest {
 
         t1.channel = 7;                  //channel 멤버변수에 7 저장
         t1.channelDown();                //channel을 1 줄이는 메서드
-        System.out.println(t1.channel);  //t.channel 결과 : 6
+        System.out.println(t1.channel);  //t1.channel 결과 : 6
         System.out.println(t2.channel);
-        t2 = t1;
-        System.out.println(t2.channel);
+        t2 = t1;                        //t1의 인스턴스 주소값을 t2에 저장
+        System.out.println(t2.channel); //t2 == t1 이라서 채널값 6나옴
         
     }
 }
