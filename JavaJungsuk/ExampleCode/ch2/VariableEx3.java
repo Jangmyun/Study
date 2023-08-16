@@ -26,6 +26,8 @@ public class VariableEx3 {
         String str2 = "DEF";
         String str3 =str + str2;
 
+        System.out.printf("%b, %d, %d, %d , %d, %f, %f, %f, %c, %d" , power,b, oct,hex,l,f,d,df,ch,i );
+
         System.out.println(str3);
         System.out.println("" + 7 + 7);     // "77"
         System.out.println(7 + 7 + "");     // "14"

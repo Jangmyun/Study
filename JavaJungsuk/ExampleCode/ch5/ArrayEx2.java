@@ -1,3 +1,5 @@
+package ExampleCode.ch5;
+
 import java.util.Arrays;
 
 public class ArrayEx2 {

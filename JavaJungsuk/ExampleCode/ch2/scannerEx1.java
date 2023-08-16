@@ -25,6 +25,7 @@ public class scannerEx1 {
         System.out.println(f1);
         System.out.println(f2);
         
+        scanner.close();
     }
 
 }

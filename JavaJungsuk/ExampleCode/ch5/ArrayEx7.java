@@ -1,4 +1,7 @@
+package ExampleCode.ch5;
+
 import java.util.Arrays;
+
 public class ArrayEx7 {
     public static void main(String[] args) {
         int[] numArr = new int[10];

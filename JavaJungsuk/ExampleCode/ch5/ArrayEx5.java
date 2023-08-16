@@ -1,3 +1,5 @@
+package ExampleCode.ch5;
+
 public class ArrayEx5 {
     public static void main(String[] args) {
         int[] arr1 = {2, 4, 65, 67, 8};

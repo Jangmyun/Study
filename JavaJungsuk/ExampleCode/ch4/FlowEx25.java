@@ -14,6 +14,7 @@ public class FlowEx25 {
             System.out.printf("num=%d sum=%d%n", number , sum);
 
             number /= 10;
+            scanner.close();
         }
     }
 }
