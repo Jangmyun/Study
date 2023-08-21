@@ -13,7 +13,7 @@ class Car {
     Car(){
         this("white", "auto", 4);
     }
-    Car(Car car){
+    Car(Car car){           // 생성자를 사용해서 인스턴스 복사
         color = car.color;
         gearType = car.gearType;
         door = car.door;
