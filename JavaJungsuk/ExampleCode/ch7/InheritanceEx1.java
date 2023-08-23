@@ -5,8 +5,8 @@ class Tv {
     int channel;
 
     void power(){ power = !power;}
-    void channelUp() { channel++;}
-    void channelDown() { channel--;}
+    void channelUp() { ++channel;}
+    void channelDown() { --channel;}
 }
 
 class CaptionTv extends Tv {        // Tv 를 상속받는 CaptionTv 클래스 정의
