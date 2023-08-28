@@ -97,3 +97,75 @@ function App() {
 
 #### `style={ { style : 'value'} }` 처럼 중괄호를 사용하고 스타일 속성은 **camelCase** 로 작성해야함<br>js에서 `-`기호는 빼기라서
 
+
+
+### 참고로 `return ()` 안에 태그 작성하는데 태그 하나 안에 모든게 다 들어가야함 태그를 병렬로 작성하면 오류남
+
+```react
+return (
+  <div className="App">
+  	<div></div>
+    <div></div>
+  </div>
+);
+```
+
+#### 위 예시처럼 `className`이  `App`인 div 태그 안에 모든 태그들이 들어가있어야 함
+
+
+
+
+
+
+
+
+
+## state
+
+### state 생성
+
+```react
+import { useState } from 'react';
+
+function App() {
+  let [articlTitle,b] = useState('Value');
+}
+```
+
+#### `let [a,b] = useState()` 를 이해하려면 JS의 **Destructuring assignment** 문법에 대해 알아야 한다.
+
+```javascript
+const numbers = [1,2,3,4];
+const [ first, second, ,fourth ] = numbers; // first에 1, second에 2, fourth에 4를 대입함
+
+let person = {
+  firstName: 'John',
+  lastName: 'Doe',
+  age: 21
+};
+let { firstName, lastName, age } = person;	//firstName, lastName, age에 객체의 키값 할당
+```
+
+#### 배열이나 객체의 값을 대입할 때 편함
+
+
+
+```react
+import {useState} from 'react';
+
+function App() {
+  let [articleTitle, setArticleTitle] = useState('Blog article 1');
+  articleTi
+  return (
+    <div className="App">
+    	<div className="article">
+      	<h4>{ articleTitle }</h4>	{/* useState로 만들어진 변수 바인딩*/}
+      </div>
+    </div>
+  );
+}
+```
+
+#### 일반적인 변수로 html에 데이터를 바인딩 해도 변수가 갑자기 바뀔 때 그 값이 자동으로 반영이 안된다.
+
+### `state`쓰면  값이 바뀌면 html이 자동 재렌더링 됨<br>state값 변경시 html에 바로바로 반영하고 싶으면 state 쓰면 됨
