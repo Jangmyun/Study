@@ -10,3 +10,9 @@
   color: rgb(77, 77, 77);
   margin: 10px;
 }
+
+.list {
+  text-align: left;
+  padding-left: 30px;
+  border-bottom: 3px solid lightgray;
+}
