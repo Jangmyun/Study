@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 
 function App() {
@@ -8,7 +8,11 @@ function App() {
   return (
     <div className="App">
       <div class="nav">
-        <h4 style={{color: 'red', fontSize :'30px'}}>{blogTitle}</h4>   
+        <h4 style={{fontSize :'30px'}}>{blogTitle}</h4>   
+      </div>
+      <div className="list">
+        <h4>Articl Title</h4>
+        <p>2023.07.57</p>
       </div>
     </div>
   );
