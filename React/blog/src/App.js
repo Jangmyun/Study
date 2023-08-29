@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
 
-      <div class="nav">
+      <div className="nav">
         <h4 style={{fontSize :'30px'}}>{ blogTitle }</h4>
       </div>
       <button onClick={()=>{ 
@@ -36,13 +36,19 @@ function App() {
         <h4>{ articleTitle[2] }   <span onClick={()=>{setLike(++like)}}>👍</span>{like}</h4>
         <p>2023.07.23</p>
       </div>
-
+      
+      <Modal></Modal>
     </div>
   );
 }
-
-function LikePlus(like){
-  console.log(1);
+function Modal(){
+  return(
+    <div className='modal'>
+      <h4>제목</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
+  );
 }
 function Articles(articleTitle) {
   return (
