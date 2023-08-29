@@ -169,3 +169,34 @@ function App() {
 #### 일반적인 변수로 html에 데이터를 바인딩 해도 변수가 갑자기 바뀔 때 그 값이 자동으로 반영이 안된다.
 
 ### `state`쓰면  값이 바뀌면 html이 자동 재렌더링 됨<br>state값 변경시 html에 바로바로 반영하고 싶으면 state 쓰면 됨
+
+
+
+### state 값 변경
+
+```react
+let [like, setLike] = useState(0);
+```
+
+#### JS의 Destructuring 문법을 써서 state와 state를 변경하기위한 함수를 넣었었다. state 변경함수를 사용해야 값이 바뀔때마다 html에 바로바로 반영됨
+
+```react
+<div className="list">
+	<h4>{ articleTitle[0] }   <span onClick={()=>{setLike(++like)}}>👍</span>{like}</h4>
+  <p>2023.07.23</p>
+</div>
+```
+
+
+
+#### state 값 변경시 배열이나 객체값 변경할 때 기존 값 보존하는 식으로 코드 짤 때 state 변경함수가 객체의 값이 같은지 (주소값) 체크해서 같으면 값 변경 안해줌 => 주소값을 변경해야하는데 전개연산자 사용하면 됨
+
+```react
+<button onClick={()=>{ 
+	let copy = [...articleTitle];	// 전개연산자 사용
+	copy[0] = '가나다라마바사';	//복사한 배열에 새값 대입
+	setArticleTitle(copy );		//복사한 배열로 state변경
+}}></button>
+```
+
+### 전개 연산자 `[...]`는 다른 주소값을 갖는 독립적인 데이터를 가지게 한다. <br>근데 얕은 복사만 됨
