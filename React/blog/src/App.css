@@ -16,3 +16,6 @@
   padding-left: 30px;
   border-bottom: 3px solid lightgray;
 }
+.list h4 span {
+  cursor: pointer;
+}
