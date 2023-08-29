@@ -244,3 +244,53 @@ function Modal(){
 ```
 
 #### `<> </>` 안에 감싸면 됨
+
+### 컴포넌트는 state값 가져올 때 문제 좀 있으니까 남발하지 말고 반복되는 html에 활용
+
+
+
+
+
+
+
+
+
+## React에서 동적 UI 만드는 방법
+
+
+
+### state에 따라 UI가 어떻게 보일지 적으면 됨
+
+```react
+function App() {
+  let [modal, setModal] = useState(false); //안보이는 상태
+  return (
+    <Modal></Modal>
+    {
+    	true ? 'true' : 'false';
+    }
+  );
+}
+```
+
+#### html 중간에 if문 사용이 안됨. 그래서 삼항 연산자 써야됨
+
+### 삼항연산자: `조건문 ? 참일 때 : 거짓일 때;`
+
+### 삼항 연산자 사용해서 코드 짜보면
+
+```react
+function App() {
+	let [modal, setModal] = useState(true);
+	return (
+    <button onClick={()=>{
+        setModal(!modal); //버튼을 누를때마다 모달 true false 바뀌게
+      }}>Modal Toggle</button>
+    {
+    	modal ? <Modal></Modal> : null
+    //modal값이 true면 <Modal/> 보이게 false면 안보이게
+    }
+  );
+}
+```
+
