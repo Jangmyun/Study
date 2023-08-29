@@ -200,3 +200,47 @@ let [like, setLike] = useState(0);
 ```
 
 ### 전개 연산자 `[...]`는 다른 주소값을 갖는 독립적인 데이터를 가지게 한다. <br>근데 얕은 복사만 됨
+
+
+
+
+
+
+
+
+
+## Component
+
+### 컴포넌트 만드는 방법
+
+#### 함수 return() 안에 html 태그 넣기<br>`<함수이름></함수이름>` 쓰면 됨
+
+```react
+function Modal(){
+  return(
+    <div className='modal'>
+      <h4>제목</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
+  );
+}
+```
+
+#### 컴포넌트에서도 하나의 태그안에 모든 태그들이 들어가야함 <br>만약 병렬로 html 태그를 만들고 싶으면
+
+```react
+function Modal(){
+  return(
+    <>
+      <div className='modal'>
+        <h4>제목</h4>
+        <p>날짜</p>
+        <p>상세내용</p>
+      </div>
+    </>
+  );
+}
+```
+
+#### `<> </>` 안에 감싸면 됨
