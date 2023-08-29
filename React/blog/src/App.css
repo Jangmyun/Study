@@ -19,3 +19,9 @@
 .list h4 span {
   cursor: pointer;
 }
+
+.modal {
+  text-align: left;
+  padding: 30px;
+  background-color: #eee;
+}
