@@ -6,13 +6,12 @@ function App() {
   let blogTitle = "New Blog";
   let [articleTitle, setArticleTitle] = useState(['블로그 첫 글', '블로그 두번째 글', 'JS 독학']); // JS의 Destructuring 문법 사용한 useState생성
   let [like, setLike] = useState(0);
+
+  let [modal, setModal] = useState(false);
   
   return (
     <div className="App">
-
-      <div className="nav">
-        <h4 style={{fontSize :'30px'}}>{ blogTitle }</h4>
-      </div>
+      <Nav></Nav>
       <button onClick={()=>{ 
           let copy = [...articleTitle];
           copy[0] = '가나다라마바사';
@@ -36,8 +35,21 @@ function App() {
         <h4>{ articleTitle[2] }   <span onClick={()=>{setLike(++like)}}>👍</span>{like}</h4>
         <p>2023.07.23</p>
       </div>
+
+      <button onClick={()=>{
+        setModal(!modal);
+      }}>modal</button>
       
-      <Modal></Modal>
+      {
+        modal ? <Modal></Modal> : null
+      }
+    </div>
+  );
+}
+function Nav(){
+  return(
+    <div className="nav">
+      <h4 style={{fontSize :'30px'}}>세상에서 벌어지는 장면들</h4>
     </div>
   );
 }
