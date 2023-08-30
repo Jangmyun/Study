@@ -19,8 +19,10 @@
 .list h4 {
   cursor: pointer;
 }
-.list h4 span {
+.list span {
   cursor: pointer;
+  font-weight: bold;
+  user-select: none;
 }
 
 .modal {
