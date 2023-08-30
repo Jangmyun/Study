@@ -11,7 +11,8 @@ function App() {
   let [modal, setModal] = useState(false);
   let [modalTitle, setmodalTitle] = useState(0);
   let [input, setInput] = useState('');
-  let arr = [1,2,3,4];
+  let [showMessage, setShowMessage] = useState(false);
+
   
   
   
@@ -51,6 +52,16 @@ function App() {
       <input type="text" onChange={(e)=>{ setInput(e.target.value) }} />
       <button onClick={()=>{
         let copyTitle = copyArr(articleTitle);
+        if (input == '' && showMessage==false){
+          
+          setShowMessage(!showMessage);
+          setTimeout(()=>{
+            setShowMessage(false);
+          }, 2000);
+          return
+        }else if (input == ''){
+          return
+        }
         copyTitle.unshift(input);
         setArticleTitle(copyTitle);
 
@@ -59,7 +70,10 @@ function App() {
         setLike(copyLike);
 
       }}>글 생성</button>
-      
+
+      {
+        showMessage ? <Message></Message>: null
+      }
 
       {
         modal ? <Modal articleTitle={articleTitle} setArticleTitle={setArticleTitle} modalTitle={modalTitle}></Modal> : null
@@ -86,17 +100,19 @@ function Modal(props){
       <p>날짜</p>
       <p>상세내용</p>
       <button onClick={()=>{
-        props.setArticleTitle(editTitle(props.articleTitle));
+        props.setArticleTitle(copyArr(props.articleTitle));
       }}>글 수정</button>
     </div>
   );
 }
-
-function editTitle(articleTitle){
-  let copy = [...articleTitle];
-  copy[0] = '블로그 고인물';
-  return copy;
+function Message(){
+  return (
+    <div className='message'>
+      글 적어주셈
+    </div>
+  );
 }
+
 
 
 
