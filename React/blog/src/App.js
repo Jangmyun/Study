@@ -2,39 +2,34 @@ import './App.css';
 import { useState } from "react"; //useState 사용할때 import 해야함
 
 function App() {
-
-  let blogTitle = "New Blog";
-  let [articleTitle, setArticleTitle] = useState(['블로그 첫 글', '블로그 두번째 글', 'JS 독학']); // JS의 Destructuring 문법 사용한 useState생성
-  let [like, setLike] = useState(0);
-
+  let [articleTitle] = useState(['블로그 첫 글', '블로그 두번째 글', 'JS 독학']); // JS의 Destructuring 문법 사용한 useState생성
+  
+  let likeArr = articleTitle.map(function(){  // 글 개수만큼 0으로 채워진 배열 생성
+    return 0;
+  });   
+  let [like, setLike] = useState(likeArr);  
   let [modal, setModal] = useState(false);
+ 
+
   
   return (
     <div className="App">
       <Nav></Nav>
-      <button onClick={()=>{ 
-          let copy = [...articleTitle];
-          copy[0] = '가나다라마바사';
-          setArticleTitle(copy );
-          }}>제목변경</button>
 
-          <button onClick={()=>{
-            let copy = [...articleTitle];
-            copy.sort();
-            setArticleTitle(copy);
-          }}>제목 가나다순</button>
-      <div className="list">
-        <h4>{ articleTitle[0] }   <span onClick={()=>{setLike(++like)}}>👍</span>{like}</h4> {/* setLike함수를 이용해서 like state에 +1씩*/}
-        <p>2023.07.23</p>
-      </div>
-      <div className="list">
-        <h4>{ articleTitle[1] }   <span onClick={()=>{setLike(++like)}}>👍</span>{like}</h4>
-        <p>2023.07.23</p>
-      </div>
-      <div className="list">
-        <h4>{ articleTitle[2] }   <span onClick={()=>{setLike(++like)}}>👍</span>{like}</h4>
-        <p>2023.07.23</p>
-      </div>
+      {
+        articleTitle.map(function(value, index){
+          return (
+            <div className="list" key={index}>
+              <h4>{ articleTitle[index] }   <span onClick={(e)=>{
+                let copy = [...like];
+                copy[index] = copy[index]+1;
+                setLike(copy);
+              }}>👍</span>{like[index]}</h4>
+              <p>2023.07.23</p>
+            </div>
+          );
+        })
+      }
 
       <button onClick={()=>{
         setModal(!modal);
@@ -49,7 +44,7 @@ function App() {
 function Nav(){
   return(
     <div className="nav">
-      <h4 style={{fontSize :'30px'}}>세상에서 벌어지는 장면들</h4>
+      <h4 style={{fontSize :'40px'}}>세상에서 벌어지는 장면들</h4>
     </div>
   );
 }
@@ -62,13 +57,6 @@ function Modal(){
     </div>
   );
 }
-function Articles(articleTitle) {
-  return (
-    <div className='list'>
-      <h4>{articleTitle}</h4>
-      <p>2023.07.23</p>
-    </div>
-  );
-}
+
 
 export default App;
