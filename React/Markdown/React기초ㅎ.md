@@ -76,3 +76,22 @@ function Modal(props){
 
 #### 자식 컴포넌트 파라미터로 `props` 넘긴다음 `props.작명`으로 state값 사용하면 됨
 
+
+
+
+
+
+
+## 사용자 입력 다루기
+
+### 바닐라 JS 쓸때처럼 `onChange` 이벤트 핸들러 만들어 놓고 파라미터로 `e` 넘겨서 `e.target.value` 이런거 사용하면 됨
+
+```react
+{
+  let [input, setInput] = useState('');
+}
+<input type="text" onChange={(e)=>{
+    setInput(e.target.value);	//변경된 입력값 
+  }}></input>
+```
+
