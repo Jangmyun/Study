@@ -13,7 +13,8 @@ function App() {
   let [input, setInput] = useState('');
   let arr = [1,2,3,4];
   
-
+  
+  
   
   return (
     <div className="App">
@@ -27,11 +28,20 @@ function App() {
                 setModal(!modal);
                 setmodalTitle(index);
               }}>{ articleTitle[index] }</h4>
-              <span onClick={()=>{
+              <div className='likeDelete'>
+                
+                <span onClick={()=>{
                 let copy = [...like];
                 copy[index] = copy[index]+1;
                 setLike(copy);
-              }}>👍 {like[index]}</span>
+                }}>👍 {like[index]}</span>
+              
+                <button className='delete-btn' onClick={()=>{
+                  let copyTitle = copyArr(articleTitle);
+                  copyTitle.splice(index,1);
+                  setArticleTitle(copyTitle);
+                }}>삭제</button>
+              </div>
               <p>2023.07.23</p>
             </div>
           );
