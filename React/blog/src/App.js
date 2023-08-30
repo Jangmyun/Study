@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from "react"; //useState 사용할때 import 해야함
+import React, { useState } from "react"; //useState 사용할때 import 해야함
 
 function App() {
   let [articleTitle, setArticleTitle] = useState(['블로그 첫 글', '블로그 두번째 글', 'JS 독학']); // JS의 Destructuring 문법 사용한 useState생성
@@ -9,7 +9,10 @@ function App() {
   });   
   let [like, setLike] = useState(likeArr);  
   let [modal, setModal] = useState(false);
- 
+  let [modalTitle, setmodalTitle] = useState(0);
+  let [input, setInput] = useState('');
+  let arr = [1,2,3,4];
+  
 
   
   return (
@@ -20,29 +23,45 @@ function App() {
         articleTitle.map(function(value, index){
           return (
             <div className="list" key={index}>
-              <h4 onClick={()=>{
+              <h4 onClick={(e)=>{
                 setModal(!modal);
-              }}>{ articleTitle[index] }   <span onClick={()=>{
+                setmodalTitle(index);
+              }}>{ articleTitle[index] }</h4>
+              <span onClick={()=>{
                 let copy = [...like];
                 copy[index] = copy[index]+1;
                 setLike(copy);
-              }}>👍</span>{like[index]}</h4>
+              }}>👍 {like[index]}</span>
               <p>2023.07.23</p>
             </div>
           );
         })
       }
-
-      <button onClick={()=>{
-        setModal(!modal);
-      }}>modal</button>
       
+      <input type="text" onChange={(e)=>{ setInput(e.target.value) }} />
+      <button onClick={()=>{
+        let copyTitle = copyArr(articleTitle);
+        copyTitle.unshift(input);
+        setArticleTitle(copyTitle);
+
+        let copyLike = copyArr(like);
+        copyLike.unshift(0);
+        setLike(copyLike);
+
+      }}>글 생성</button>
+      
+
       {
-        modal ? <Modal articleTitle={articleTitle} setArticleTitle={setArticleTitle}></Modal> : null
+        modal ? <Modal articleTitle={articleTitle} setArticleTitle={setArticleTitle} modalTitle={modalTitle}></Modal> : null
       }
     </div>
   );
 }
+function copyArr(arr){
+  let copy = [...arr];
+  return copy;
+}
+
 function Nav(){
   return(
     <div className="nav">
@@ -53,7 +72,7 @@ function Nav(){
 function Modal(props){
   return(
     <div className='modal'>
-      <h4>{props.articleTitle[0]}</h4>
+      <h4>{props.articleTitle[props.modalTitle]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
       <button onClick={()=>{
@@ -68,6 +87,8 @@ function editTitle(articleTitle){
   copy[0] = '블로그 고인물';
   return copy;
 }
+
+
 
 
 export default App;
