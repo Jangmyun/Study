@@ -42,3 +42,37 @@ function App(){
     return 0;	//articleTitle배열의 길이만큼 0으로 채워진 배열 생성
   })
 }
+```
+
+
+
+
+
+
+
+## props
+
+### 부모 컴포넌트로부터 자식 컴포넌트로 state 전송 가능함<br>그 때 사용하는게 props
+
+```react
+{
+  modal == true ? <Modal articleTitle={articleTitle}></Modal>
+}
+```
+
+#### 자식 컴포넌트에 state이름으로 `작명={state이름}` 넘겨주고
+
+```react
+function Modal(props){
+  return(
+  	<div className='modal'>
+      <h4>props.state이름</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
+  );
+}
+```
+
+#### 자식 컴포넌트 파라미터로 `props` 넘긴다음 `props.작명`으로 state값 사용하면 됨
+
