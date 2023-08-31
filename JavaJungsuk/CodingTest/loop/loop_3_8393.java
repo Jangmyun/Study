@@ -12,5 +12,7 @@ public class loop_3_8393 {
             result+=i;
         }
         System.out.println(result);
+
+        scanner.close();
     }
 }
