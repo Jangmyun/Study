@@ -32,6 +32,8 @@ class Computer extends Product {
 class Buyer {
     int money = 1000;
     int bonusPoint=0;
+    Product[] cart = new Product[10];       // Product 객체 배열 멤버변수
+    int i=0;                                // 객체 배열에 사용할 index
 
     void buy(Product p){        //다형성을 이용해서 Product 클래스를 상속받은 다른 클래스도 들어갈 수 있음
         if( this.money< p.price ){
@@ -40,6 +42,7 @@ class Buyer {
         }
         this.money -= p.price;
         this.bonusPoint += p.bonusPoint;
+        cart[i++] = p;                          // 매개변수로 받은 Product 또는 Product의 자손 클래스의 참조변수 저장
         System.out.println(p + " 구입완료");
     }
     void checkMoney(){
@@ -59,6 +62,8 @@ public class ParameterPolymorphism {
         buyer.checkPoint();
         buyer.buy(new Tv1());
         buyer.checkMoney();
+
+        System.out.println(buyer.cart[0]);
     }
 }
 
