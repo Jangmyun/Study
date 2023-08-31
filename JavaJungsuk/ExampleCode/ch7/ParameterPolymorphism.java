@@ -45,6 +45,9 @@ class Buyer {
     void checkMoney(){
         System.out.println("현재잔액: "+this.money);
     }
+    void checkPoint(){
+        System.out.println("현재포인트: "+ this.bonusPoint);
+    }
 }
 
 public class ParameterPolymorphism {
@@ -53,6 +56,7 @@ public class ParameterPolymorphism {
 
         buyer.buy(new Computer());
         buyer.checkMoney();
+        buyer.checkPoint();
         buyer.buy(new Tv1());
         buyer.checkMoney();
     }
