@@ -95,3 +95,31 @@ function Modal(props){
   }}></input>
 ```
 
+
+
+
+
+## React Bootstrap
+
+### 리액트에서 부트스트랩 쓰려면 React Bootstrap 설치하면 됨
+
+```bash
+$ npm install react-bootstrap bootstrap
+```
+
+### Component 같은거 부트스트랩 웹사이트에서 찾아서 쓰면 되는데 해당 컴포넌트 import 잘 시켜줘야함
+
+
+
+## JSX에서 이미지 넣기
+
+```react
+import imgName from './이미지경로'; 	// 사용전에 import
+
+function App(){
+  return(
+  	<div className="main-bg" style={{backgroundImage: 'url('+ imgName +')'}}></div>	
+  ); 
+}
+```
+
