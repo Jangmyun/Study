@@ -1,12 +1,19 @@
 import './App.css';
 import './Navbar.css'
-
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 
 function App() {
   return (
     <div className="App">
       <Navbar></Navbar>
-        
+      <div className="main-bg"></div>
+      <Container className='productBox'>
+        <Row>
+          <ProductList></ProductList>
+        </Row>
+      </Container>
     </div>
   );
 }
@@ -25,17 +32,16 @@ function Navbar() {
   );
 }
 
+function ProductList(){
+  return (
+    <Col md={4} lg={3}>
+      <img src="https://jangmyun.github.io/img/softwareThumbnail/soft_thumb02.jpg" alt="" width={'100%'}/>
+      <h4>Product Name</h4>
+      <p>Product information</p>
+    </Col>
+  );
+}
 
-let navs = document.querySelectorAll('.navbar-nav a');
-navs.forEach(function(nav){
-  nav.addEventListener('click', function(e){
-    if( !(e.currentTarget.classList.contains("active"))){
-      navs.forEach(function(nav){
-        nav.classList.remove('active');
-      })
-    }
-  })
-});
 
 // navs.forEach((nav)=>{
 //   nav.addEventListener('click', function(e){
