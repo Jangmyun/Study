@@ -1,5 +1,6 @@
 import './App.css';
-import './Navbar.css'
+import './Navbar.css';
+import './Product.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -11,7 +12,9 @@ function App() {
       <div className="main-bg"></div>
       <Container className='productBox'>
         <Row>
-          <ProductList></ProductList>
+          <ProductList src={"https://jangmyun.github.io/img/React/Product/AirForce.jpg"}/>
+          <ProductList src={"https://jangmyun.github.io/img/React/Product/NikeBasketballShoes.jpg"}/>
+          <ProductList src={"https://jangmyun.github.io/img/React/Product/mainBg.jpg"} />
         </Row>
       </Container>
     </div>
@@ -32,10 +35,10 @@ function Navbar() {
   );
 }
 
-function ProductList(){
+function ProductList(props){
   return (
-    <Col md={4} lg={3}>
-      <img src="https://jangmyun.github.io/img/softwareThumbnail/soft_thumb02.jpg" alt="" width={'100%'}/>
+    <Col md={4} lg={4}>
+      <img width={'100%'} src={props.src} alt="" />
       <h4>Product Name</h4>
       <p>Product information</p>
     </Col>
