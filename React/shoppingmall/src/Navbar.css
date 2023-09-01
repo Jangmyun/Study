@@ -1,3 +1,28 @@
-h4 {
-    font-size: 30px;
+.navbar {
+    background-color: #212529 ;
+    display: flex;
+    justify-content:left;
+}
+.navbar-logo {  
+    color:white;
+    margin: 0px 10px;
+    width: 30%;
+}
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+}
+.navbar-nav a {
+    text-decoration: none;
+    color: rgb(184, 184, 184);
+    margin: 0 10px;
+}
+.navbar-nav a:first-child {
+    margin-left: 30px;
+}
+.navbar-nav a:hover {
+    color: rgb(215, 215, 215);
+}
+.active {
+    color: white;
 }
