@@ -13,6 +13,11 @@ class Plus {
     int plusAB() {
         return this.a + this.b;
     }
+    static void printCase(int[] intArr, int[] aArr, int[] bArr){
+        for(int i=0; i<intArr.length; i++){
+            System.out.printf("Case #%d: %d + %d = %d%n", i+1, aArr[i],bArr[i],intArr[i]);
+        }
+    }
 }
 
 public class loop_2_10950 {
@@ -22,17 +27,20 @@ public class loop_2_10950 {
 
         Plus[] caseArr = new Plus[t];
         int[] resultArr = new int[t];
+        int[] aArr = new int[t];
+        int[] bArr = new int[t];
 
         for (int i =0; i<t; i++){
             int a= scanner.nextInt();
             int b= scanner.nextInt();
 
             caseArr[i] = new Plus(a,b);
+            
             resultArr[i] = caseArr[i].plusAB();
+            aArr[i] = a;
+            bArr[i] = b;
         }
-        for (int i=0; i<resultArr.length; i++){
-            System.out.println(resultArr[i]);
-        }
+        Plus.printCase(resultArr, aArr, bArr);
 
         scanner.close();
     }
