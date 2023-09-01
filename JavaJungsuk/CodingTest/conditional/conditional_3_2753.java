@@ -19,5 +19,6 @@ public class conditional_3_2753 {
             leapYear =0;
         }
         System.out.println(leapYear);
+        scan.close();
     }
 }

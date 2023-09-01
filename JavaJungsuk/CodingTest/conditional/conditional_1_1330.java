@@ -9,8 +9,9 @@ public class conditional_1_1330 {
         int a = scanner.nextInt();
         int b = scanner.nextInt();
 
-        if( a < b ) { System.out.println("<"); return;}
-        if( a > b ) { System.out.println(">"); return;}
-        if( a == b) { System.out.println("=="); return;}
+        if( a < b ) { System.out.println("<");}
+        if( a > b ) { System.out.println(">");}
+        if( a == b) { System.out.println("==");}
+        scanner.close();
     }
 }

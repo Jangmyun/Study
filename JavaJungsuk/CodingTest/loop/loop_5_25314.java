@@ -9,5 +9,6 @@ public class loop_5_25314 {
             System.out.print("long ");
         }
         System.out.println("int");
+        scanner.close();
     }
 }
