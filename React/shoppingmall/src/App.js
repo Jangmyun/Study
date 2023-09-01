@@ -18,11 +18,35 @@ function Navbar() {
         <h4>Jangmyun.shop</h4>
       </div>
       <div className="navbar-nav">
-        <a href="#home">Home</a>
+        <a className="active" href="#home">Home</a>
         <a href="#cart">Cart</a>
       </div>
     </div>
   );
 }
 
+
+let navs = document.querySelectorAll('.navbar-nav a');
+navs.forEach(function(nav){
+  nav.addEventListener('click', function(e){
+    if( !(e.currentTarget.classList.contains("active"))){
+      navs.forEach(function(nav){
+        nav.classList.remove('active');
+      })
+    }
+  })
+});
+
+// navs.forEach((nav)=>{
+//   nav.addEventListener('click', function(e){
+//     if( e.target.classList.contains("selected")){
+//       return;
+//     }else {
+//       navs.forEach((nav)=>{
+//         nav.classList.remove("selected");
+//       })
+//       e.target.classList.add("selected");
+//     }
+//   })
+// })
 export default App;
