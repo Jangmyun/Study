@@ -123,3 +123,14 @@ function App(){
 }
 ```
 
+### `<img src={}>` 으로 public 폴더안의 이미지 에러없이 잘 쓰려면
+
+```react
+function App(){
+  return(
+  	<img src={process.env.PUBLIC_URL + '/퍼블릭 폴더 내 경로'} />
+  );
+}
+```
+
+#### 이렇게 설정해주면 리액트 프로젝트를 발행할 때 경로 문제 없을듯
