@@ -2,6 +2,7 @@
     background-color: #212529 ;
     display: flex;
     justify-content:left;
+    align-items: center;
 }
 .navbar-logo {  
     color:white;
