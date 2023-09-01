@@ -52,7 +52,7 @@
 }
 
 .message {
-  margin: 0 auto;
+  margin: 10px auto;
   width: 100px;
   padding: 10px 30px;
   background-color: red;

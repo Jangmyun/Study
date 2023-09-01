@@ -12,7 +12,6 @@ function App() {
   let [modalTitle, setmodalTitle] = useState(0);
   let [input, setInput] = useState('');
   let [showMessage, setShowMessage] = useState(false);
-
   
   
   
@@ -53,7 +52,6 @@ function App() {
       <button onClick={()=>{
         let copyTitle = copyArr(articleTitle);
         if (input == '' && showMessage==false){
-          
           setShowMessage(!showMessage);
           setTimeout(()=>{
             setShowMessage(false);
