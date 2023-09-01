@@ -19,5 +19,6 @@ public class conditional_2_9498 {
             rank= 'F';
         }
         System.out.println(rank);
+        scanner.close();
     }
 }
