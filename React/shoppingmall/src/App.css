@@ -2,4 +2,13 @@
   text-align: center;
 }
 
+.main-bg {
+  width: 100%;
+  height: 40vh;
+  
+  background-image: url(../public/domino-164_6wVEHfI-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 
