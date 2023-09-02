@@ -24,6 +24,10 @@ function App() {
         <Route path='/' element={<><div className="main-bg"></div><ProductList productId={productId} setProductId={setProductId} /></>}></Route>
         <Route path='/cart' element={<div>Cart</div>}></Route>
         <Route path='/detail' element={<ProductDetail/>}></Route>
+        <Route path='/event' element={<Event/>}>
+          <Route path='one' element={<div>첫 주문시 30% 할인</div>} />
+          <Route path='two' element={<div>생일기념 할인쿠폰 증정</div>}/>
+        </Route>
         <Route path='/about' element={<About/>}>
           <Route path='member'element={<div>우리회사 멤버들</div>}/>
           <Route path='location' element={<div>우리회사 위치</div>}/>
@@ -41,9 +45,18 @@ function About(){
       <button onClick={()=>{navigate('member')}}>멤버</button>
       <button onClick={()=>{ navigate('location')}}>위치</button>
       <Outlet></Outlet>
-      
     </div>
-
+  );
+}
+function Event(){
+  let navigate = useNavigate();
+  return(
+    <div>
+      <h4>오늘의 이벤트</h4>
+      <button onClick={()=>{navigate('one')}}>1</button>
+      <button onClick={()=>{ navigate('two')}}>2</button>
+      <Outlet></Outlet>
+    </div>
   );
 }
 function Navbar() {
@@ -56,6 +69,7 @@ function Navbar() {
         <a className="active" href="/">Home</a>
         <a href="/cart">Cart</a>
         <a href="/about">About</a>
+        <a href="/event">Event</a>
       </div>
     </div>
   );
