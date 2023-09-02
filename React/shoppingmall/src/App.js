@@ -40,7 +40,8 @@ function ProductList(props){
     <Col md={4} lg={4}>
       <img width={'100%'} src={props.src} alt="" />
       <h4>Product Name</h4>
-      <p>Product information</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, blanditiis.
+      </p>
     </Col>
   );
 }
