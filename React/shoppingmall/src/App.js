@@ -4,7 +4,7 @@ import './css/Product.css';
 import {Row, Col, Container} from 'react-bootstrap';
 import data from './Data';
 import {useState} from 'react';
-import {Routes, Route, Link} from 'react-router-dom';
+import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom';
 
 
 
@@ -17,18 +17,35 @@ function App() {
     <div className="App">
       <Navbar></Navbar>
 
-      <div className="main-bg"></div>
+      
 
       <Routes>
-        <Route path='/' element={<ProductList productId={productId} setProductId={setProductId} />}></Route>
+        <Route path='*' />
+        <Route path='/' element={<><div className="main-bg"></div><ProductList productId={productId} setProductId={setProductId} /></>}></Route>
         <Route path='/cart' element={<div>Cart</div>}></Route>
         <Route path='/detail' element={<ProductDetail/>}></Route>
+        <Route path='/about' element={<About/>}>
+          <Route path='member'element={<div>우리회사 멤버들</div>}/>
+          <Route path='location' element={<div>우리회사 위치</div>}/>
+        </Route>
       </Routes>
 
     </div>
   );
 }
+function About(){
+  let navigate = useNavigate();
+  return (
+    <div>
+      <h4>회사에 관하여</h4>
+      <button onClick={()=>{navigate('member')}}>멤버</button>
+      <button onClick={()=>{ navigate('location')}}>위치</button>
+      <Outlet></Outlet>
+      
+    </div>
 
+  );
+}
 function Navbar() {
   return (
     <div className="navbar">
@@ -38,6 +55,7 @@ function Navbar() {
       <div className="navbar-nav">
         <a className="active" href="/">Home</a>
         <a href="/cart">Cart</a>
+        <a href="/about">About</a>
       </div>
     </div>
   );
@@ -90,6 +108,15 @@ function ProductDetail({src, title, contnet, price}){
         </Col>
       </Row>
     </Container>
+  );
+}
+
+function Error404Page() {
+  return(
+    <div>
+      <h1>404!</h1>
+      <p>Wrong Internet Address!</p>
+    </div>
   );
 }
 
