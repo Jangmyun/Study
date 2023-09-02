@@ -1,6 +1,6 @@
-import './App.css';
-import './Navbar.css';
-import './Product.css';
+import './css/App.css';
+import './css/Navbar.css';
+import './css/Product.css';
 import {Row, Col, Container} from 'react-bootstrap';
 import data from './Data';
 import {useState} from 'react';
@@ -10,19 +10,21 @@ import {Routes, Route, Link} from 'react-router-dom';
 
 function App() {
   let [shoes, setShoes] = useState(data);
+  let [productId, setProductId] = useState(0);
 
 
-  return (
+  return ( 
     <div className="App">
       <Navbar></Navbar>
 
       <div className="main-bg"></div>
 
       <Routes>
-        <Route path='/' element={<ProductList />}></Route>
+        <Route path='/' element={<ProductList productId={productId} setProductId={setProductId} />}></Route>
         <Route path='/cart' element={<div>Cart</div>}></Route>
+        <Route path='/detail' element={<ProductDetail/>}></Route>
       </Routes>
-      
+
     </div>
   );
 }
@@ -40,7 +42,7 @@ function Navbar() {
     </div>
   );
 }
-function ProductList(){
+function ProductList({productId}){
   let [shoes, setShoes] = useState(data);
   return (
     <Container className='productBox'>
@@ -48,8 +50,8 @@ function ProductList(){
           { // Data.js에서 import 한 data 반복문 돌려서 ProductCard 생성
             shoes.map(function(value, index){
               return(
-                <ProductCard  src={"https://jangmyun.github.io/img/React/Product/product"+ (index+1) +".jpg"}
-                            title={value.title} content={value.content} price={value.price}
+                <ProductCard key={index} id={index} src={"https://jangmyun.github.io/img/React/Product/product"+ (index+1) +".jpg"}
+                            title={value.title} content={value.content} price={value.price} productId={productId}
                 />
               );
             })
@@ -59,14 +61,35 @@ function ProductList(){
   );
 }
 
-function ProductCard({src, title, content, price}){
+function ProductCard({id, src, title, content, price}){
   return (
-    <Col xs={6} md={4} lg={4}>
+    <Col id={id} xs={6} md={4} lg={4} onClick={()=>{
+      window.location.href = "/detail"
+    }}>
       <img width={'100%'} src={src} alt="" />
       <h4>{title}</h4>
       <p>{content}</p>
       <h5>{price}원</h5>
     </Col>
+  );
+}
+
+function ProductDetail({src, title, contnet, price}){
+  return(
+    <Container onClick={()=>{
+      window.location.href = "/";
+    }}>
+      <Row>
+        <Col xs={6}>
+          <img src="https://jangmyun.github.io/img/React/Product/product1.jpg" alt="" width={'100%'} />
+        </Col>
+        <Col xs={6}>
+          <h4>Airforce</h4>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, corrupti.</p>
+          <h5>price 원</h5>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
