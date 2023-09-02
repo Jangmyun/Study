@@ -4,17 +4,30 @@ import './Product.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import data from './Data';
+import { useState } from 'react';
+
+
 
 function App() {
+  let [shoes, setShoes] = useState(data);
+
+
   return (
     <div className="App">
       <Navbar></Navbar>
       <div className="main-bg"></div>
       <Container className='productBox'>
         <Row>
-          <ProductList src={"https://jangmyun.github.io/img/React/Product/AirForce.jpg"}/>
-          <ProductList src={"https://jangmyun.github.io/img/React/Product/NikeBasketballShoes.jpg"}/>
-          <ProductList src={"https://jangmyun.github.io/img/React/Product/mainBg.jpg"} />
+          { // Data.js에서 import 한 
+            shoes.map(function(value, index){
+              return(
+                <ProductCard  src={"https://jangmyun.github.io/img/React/Product/product"+ (index+1) +".jpg"}
+                            title={value.title} content={value.content} price={value.price}
+                />
+              );
+            })
+          }
         </Row>
       </Container>
     </div>
@@ -35,13 +48,13 @@ function Navbar() {
   );
 }
 
-function ProductList(props){
+function ProductCard({src, title, content, price}){
   return (
-    <Col md={4} lg={4}>
-      <img width={'100%'} src={props.src} alt="" />
-      <h4>Product Name</h4>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, blanditiis.
-      </p>
+    <Col xs={6} md={4} lg={4}>
+      <img width={'100%'} src={src} alt="" />
+      <h4>{title}</h4>
+      <p>{content}</p>
+      <h5>{price}원</h5>
     </Col>
   );
 }
