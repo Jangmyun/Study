@@ -7,7 +7,6 @@ public class N3_10818 {
         int[] numArr = new int[9];
         Integer max = null;
         int index=0;
-
         for( int i=0; i<numArr.length; i++){
             numArr[i] = scanner.nextInt();
             if( max == null) {
@@ -19,10 +18,6 @@ public class N3_10818 {
             }
         }
         System.out.printf("%d%n%d",max, index);
-
-
-        
-        
         scanner.close();
     }
 }
