@@ -17,7 +17,7 @@ public class N3_10818 {
                 index = i;
             }
         }
-        System.out.printf("%d%n%d",max, index);
+        System.out.printf("%d%n%d",max, index+1);
         scanner.close();
     }
 }
