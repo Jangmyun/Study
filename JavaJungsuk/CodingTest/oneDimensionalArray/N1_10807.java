@@ -1,32 +1,36 @@
 package CodingTest.oneDimensionalArray;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+
 
 public class N1_10807 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        String tmp = scanner.nextLine();
-        int N = Integer.parseInt(tmp);
+        String nxString = scanner.nextLine();
+        StringTokenizer st1 = new StringTokenizer(nxString);
+        int N = Integer.parseInt(st1.nextToken());
+        int X = Integer.parseInt(st1.nextToken());
         int[] Narr = new int[N];
+        ArrayList<Integer> Xarr = new ArrayList<>();
 
         String numberString = scanner.nextLine();
-        StringTokenizer st = new StringTokenizer(numberString);
+        StringTokenizer st2 = new StringTokenizer(numberString);
         
         int i=0;
-        while(st.hasMoreTokens()){
-            Narr[i] = Integer.parseInt(st.nextToken());
+        while(st2.hasMoreTokens()){
+            Narr[i] = Integer.parseInt(st2.nextToken());
+            if( Narr[i] < X ){
+                Xarr.add(Narr[i]);
+            }
             i++;
         }
-        int v = scanner.nextInt();
-        int counter=0;
 
-        for( int n : Narr){
-            if(n == v){
-                counter++;
-            }
+        for( int n : Xarr){
+            System.out.printf("%d ",n);
         }
-        System.out.println(counter);
+        
         
         scanner.close();
     }
