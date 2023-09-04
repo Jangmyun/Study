@@ -134,3 +134,161 @@ function App(){
 ```
 
 #### 이렇게 설정해주면 리액트 프로젝트를 발행할 때 경로 문제 없을듯
+
+
+
+
+
+## 다른 js 파일에 데이터 저장하고 export 하는 법
+
+```react
+let a = 10;
+
+export deafult a;
+```
+
+#### 다른 js 파일에 `export deaulft 변수명` 하고
+
+```react
+import a form './data.js'
+```
+
+#### 데이터 쓰려는  js 파일에 `import 변수명 from '파일경로'` 해주면 됨
+
+
+
+
+
+## React Router
+
+### 리액트 없이 페이지 구분하는 방법: html 파일 새로 만들어서 그거 연결함
+
+### 리액트는 싱글페이지 어플리케이션이라서 `index.html`만 씀<br>컴포넌트로 페이지 내용을 채우고 다른페이지 접속하면 그 페이지 컴포넌트 보여줌
+
+### `react-router-dom` 이거 쓰면 쉽게 할 수 있음
+
+
+
+```react
+//index.js
+import {BrowserRouter} from "react-router-dom";
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);
+```
+
+####  index.js 파일열고 `react-router-dom`에서  `BrowserRouter` import 시키고 `<App />`태그를 `<BrowserRouter>`로 감싸면 됨
+
+
+
+```react
+//App.js
+import {Routes, Route, Link} from 'react-route-dom';
+```
+
+### `App.js` 에 Routes랑 Route import 시키고
+
+```react
+function App({
+	return(
+  	<Routes>
+			<Route path="/" element={<div>Main Page</div>}></Route>  
+    	<Route path="/cart" element={<div>Cart Page</div>}></Route>
+  	</Routes>
+  );
+}
+```
+
+### `<Routes>` 태그안에 `<Route>` 태그 넣고 경로랑 해당 경로에 들어가면 표시될 html 태그 넣어주면 됨
+
+
+
+
+
+## Navigate, nested Routes, Outlet
+
+```react
+import {useNavigate, Outlet} from 'react-router-dom';
+```
+
+#### Navigate랑 Outlet 사용하려면 import 시켜줘야함
+
+```react
+function App(){
+	let navigate = useNavigate();
+  
+  return(
+		<button onClick={()=>{
+        navigate('/cart')
+      }}></button>
+  );
+}
+```
+
+#### `useNavigate()`는 페이지 이동 도와주는 함수<br>onClick 열고 `navigate('경로')` 적으면 이동시켜줌
+
+
+
+## 404 페이지 만드는 방법
+
+### 404 페이지: 링크 주소 잘못 쳤을 때 나오는 페이지
+
+```react
+<Routes>
+	<Route path="*" element={<ErrorPage404/>}></Route>
+</Routes>
+```
+
+#### `<Route>` path 속성에 `*` 적으면 내가 라우팅한 경로 외에 모든 경로에 html 요소를 보여줄 수 있음
+
+
+
+## Nested Routes
+
+```react
+<Routes>
+	<Route path="/about"></Route>
+  <Route path="/about/member"></Route>
+  <Route path="/about/location"></Route>
+</Routes>
+
+<Routes>
+	<Route path="/about">
+  	<Route path="member"></Route>
+    <Route path="location"></Route>
+  </Route>
+</Routes>
+```
+
+### 위 두 `<Routes>` 태그는 똑같은거임
+
+### 이렇게 nested된 `<Route>` 의 html요소는 부모 `<Route>` 태그 안에 보여지는데 이때 `<Outlet></Outlet>` 사용하면 됨
+
+```react
+function App(){
+  return(
+  	<Routes>
+			<Route path="/about" element={<About/>}>
+  			<Route path="member" element={<div>우리 회사 멤버</div>}></Route>
+    		<Route path="location"></Route>
+  		</Route>
+		</Routes>
+  );
+}
+function About(){
+  return(
+  	<div>
+    	<h4>회사정보</h4>
+      <Outlet></Outlet>
+    </div>
+  );
+}
+```
+
+### /about/member 접속하면 `<About>` 이랑 `<div>우리 회사 멤버</div>`가 둘 다 보인다.
