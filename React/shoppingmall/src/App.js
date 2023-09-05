@@ -4,7 +4,7 @@ import './css/Product.css';
 import {Row, Col, Container} from 'react-bootstrap';
 import data from './Data';
 import {useState} from 'react';
-import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom';
+import {Routes, Route, Link, useNavigate, Outlet, useParams} from 'react-router-dom';
 
 
 
@@ -23,7 +23,7 @@ function App() {
         <Route path='*' />
         <Route path='/' element={<><div className="main-bg"></div><ProductList productId={productId} setProductId={setProductId} /></>}></Route>
         <Route path='/cart' element={<div>Cart</div>}></Route>
-        <Route path='/detail' element={<ProductDetail/>}></Route>
+        <Route path='/detail/:id' element={<ProductDetail product={shoes}  />}></Route>
         <Route path='/event' element={<Event/>}>
           <Route path='one' element={<div>첫 주문시 30% 할인</div>} />
           <Route path='two' element={<div>생일기념 할인쿠폰 증정</div>}/>
@@ -93,10 +93,10 @@ function ProductList({productId}){
   );
 }
 
-function ProductCard({id, src, title, content, price}){
+function ProductCard({id, src, title, content, price, key}){
   return (
-    <Col id={id} xs={6} md={4} lg={4} onClick={()=>{
-      window.location.href = "/detail"
+    <Col  xs={6} md={4} lg={4} onClick={()=>{
+      window.location.href = "/detail/";
     }}>
       <img width={'100%'} src={src} alt="" />
       <h4>{title}</h4>
@@ -106,19 +106,27 @@ function ProductCard({id, src, title, content, price}){
   );
 }
 
-function ProductDetail({src, title, contnet, price}){
+function ProductDetail(props){
+
+  let {id} =useParams(); // URL 파라미터에 입력한 내용 가져오기
+
+  let idFound =  props.product.find(function(value){
+    return id == value.id;
+  });
+  let productURL = "https://jangmyun.github.io/img/React/Product/product"+(id+1)+".jpg"; 
+
   return(
-    <Container onClick={()=>{
-      window.location.href = "/";
-    }}>
+    
+    <Container className='detail' onClick={()=>{
+      window.location.href = "/";}}>
       <Row>
         <Col xs={6}>
-          <img src="https://jangmyun.github.io/img/React/Product/product1.jpg" alt="" width={'100%'} />
+          <img src={productURL} alt="" width={'100%'} />
         </Col>
         <Col xs={6}>
-          <h4>Airforce</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, corrupti.</p>
-          <h5>price 원</h5>
+          <h4>{idFound.title}</h4>
+          <p>{idFound.content}</p>
+          <h5>{idFound.price} 원</h5>
         </Col>
       </Row>
     </Container>
@@ -127,7 +135,7 @@ function ProductDetail({src, title, contnet, price}){
 
 function Error404Page() {
   return(
-    <div>
+    <div className='error-page'>
       <h1>404!</h1>
       <p>Wrong Internet Address!</p>
     </div>
