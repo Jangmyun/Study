@@ -292,3 +292,26 @@ function About(){
 ```
 
 ### /about/member 접속하면 `<About>` 이랑 `<div>우리 회사 멤버</div>`가 둘 다 보인다.
+
+
+
+## URL 파라미터
+
+```react
+<Route path="/detail/:id" element={<div></div>}/>
+```
+
+### 라우터 경로에 `:id` 이거 추가해서 URL 파라미터 사용하면 라우트 태그 많이 쓸 필요 없어짐
+
+#### 이렇게 받아온 URL 파라미터는
+
+```react
+import {useParams} from "react-router-dom";
+
+function Detail() {
+  let {id} = useParams();
+}
+```
+
+
+
