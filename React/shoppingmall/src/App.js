@@ -1,7 +1,7 @@
 import './css/App.css';
 import './css/Navbar.css';
 import './css/Product.css';
-import {About, Event} from './Component/Nav';
+import {Navbar,About, Event} from './Component/Nav';
 import ProductDetail from './Component/ProductDetail';
 import {Row, Col, Container} from 'react-bootstrap';
 import data from './Data';
@@ -39,21 +39,7 @@ function App() {
   );
 }
 
-function Navbar() {
-  return (
-    <div className="navbar">
-      <div className="navbar-logo">
-        <h4>Jangmyun.shop</h4>
-      </div>
-      <div className="navbar-nav">
-        <a className="active" href="/">Home</a>
-        <a href="/cart">Cart</a>
-        <a href="/about">About</a>
-        <a href="/event">Event</a>
-      </div>
-    </div>
-  );
-}
+
 function ProductList({productId}){
   let [shoes, setShoes] = useState(data);
   return (
