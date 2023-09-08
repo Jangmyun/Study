@@ -2,7 +2,7 @@ import './css/App.css';
 import './css/Navbar.css';
 import './css/Product.css';
 import {Navbar,About, Event} from './Component/Nav';
-import ProductDetail from './Component/ProductDetail';
+import {ProductList, ProductCard, ProductDetail} from './Component/Product';
 import {Row, Col, Container} from 'react-bootstrap';
 import data from './Data';
 import {useState , useEffect} from 'react';
@@ -14,16 +14,13 @@ import styled from 'styled-components';
 function App() {
   let [shoes, setShoes] = useState(data);
   let [productId, setProductId] = useState(0);
-  let YellowBtn = styled.button`
-        background: yellow;
-        `
 
   return ( 
     <div className="App">
       <Navbar></Navbar>
       <Routes>
         <Route path='*' />
-        <Route path='/' element={<><div className="main-bg"></div><ProductList productId={productId} setProductId={setProductId} /></>}></Route>
+        <Route path='/' element={<><div className="main-bg"></div><ProductList shoes={shoes} productId={productId} setProductId={setProductId} /></>}></Route>
         <Route path='/cart' element={<div>Cart</div>}></Route>
         <Route path='/detail/:id' element={<ProductDetail product={shoes}  />}></Route>
         <Route path='/event' element={<Event/>}>
@@ -40,37 +37,7 @@ function App() {
 }
 
 
-function ProductList({productId}){
-  let [shoes, setShoes] = useState(data);
-  return (
-    <Container className='productBox'>
-        <Row>
-          { // Data.js에서 import 한 data 반복문 돌려서 ProductCard 생성
-            shoes.map(function(value, index){
-              return(
-                <ProductCard id={index} src={"https://jangmyun.github.io/img/React/Product/product"+ (index+1) +".jpg"}
-                            title={value.title} content={value.content} price={value.price} productId={productId}
-                />
-              );
-            })
-          }
-        </Row>
-      </Container>
-  );
-}
 
-function ProductCard({id, src, title, content, price, key}){
-  return (
-    <Col  xs={6} md={4} lg={4} onClick={()=>{
-      window.location.href = "/detail/"+ (id);
-    }}>
-      <img width={'100%'} src={src} alt="" />
-      <h4>{title}</h4>
-      <p>{content}</p>
-      <h5>{price}원</h5>
-    </Col>
-  );
-}
 
 
 
@@ -82,18 +49,4 @@ function Error404Page() {
     </div>
   );
 }
-
-
-// navs.forEach((nav)=>{
-//   nav.addEventListener('click', function(e){
-//     if( e.target.classList.contains("selected")){
-//       return;
-//     }else {
-//       navs.forEach((nav)=>{
-//         nav.classList.remove("selected");
-//       })
-//       e.target.classList.add("selected");
-//     }
-//   })
-// })
 export default App;
