@@ -3,6 +3,7 @@ import {Routes, Route, Link, useNavigate, Outlet, useParams} from 'react-router-
 import {Row, Col, Container} from 'react-bootstrap';
 import '../css/Product.css';
 import '../css/App.css';
+import styled from 'styled-components';
 
 function ProductList({productId, shoes}){
   return (
@@ -40,12 +41,20 @@ function ProductDetail(props){
     let idFound =  props.product.find(function(value){
       return id == value.id;
     });
-    let productURL = `https://jangmyun.github.io/img/React/Product/product${+id+1}.jpg`; 
+    
     useEffect(()=>{
-      console.log(`${idFound.title} is good`);
-    })
+      let timeLimit = document.getElementById('time-limit');
+      let discountBanner = document.querySelector('.discount-banner');
+      setInterval(()=>{
+        timeLimit.innerText--;
+        if(timeLimit.innerText<'0'){
+          discountBanner.style.opacity = 0;
+        }
+      }, 1000);
+    });
+    
+    let productURL = `https://jangmyun.github.io/img/React/Product/product${+id+1}.jpg`; 
     return(
-      
       <Container className='detail' onClick={()=>{
         window.location.href = "/";}}>
         <Row>
@@ -58,6 +67,7 @@ function ProductDetail(props){
             <h5>{idFound.price} 원</h5>
           </Col>
         </Row>
+        <div className='discount-banner'><span id='time-limit'>2</span>초 이내 구매시 할인</div>
       </Container>
     );
   }
