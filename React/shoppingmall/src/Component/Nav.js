@@ -5,7 +5,9 @@ import React from 'react';
 function Navbar() {
     return (
       <div className="navbar">
-        <div className="navbar-logo">
+        <div className="navbar-logo" onClick={()=>{
+            window.location.href = "/";
+        }}>
           <h4>Jangmyun.shop</h4>
         </div>
         <div className="navbar-nav">
@@ -13,6 +15,7 @@ function Navbar() {
           <a href="/cart">Cart</a>
           <a href="/about">About</a>
           <a href="/event">Event</a>
+          <a href="/detail">Details</a>
         </div>
       </div>
     );
@@ -41,4 +44,4 @@ function About(){
     );
   }
 
-export {Navbar,About , Event};
+export {Navbar, About, Event};
