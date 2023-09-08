@@ -2,6 +2,21 @@ import '../css/App.css';
 import {Routes, Route, Link, useNavigate, Outlet, useParams} from 'react-router-dom';
 
 import React from 'react';
+function Navbar() {
+    return (
+      <div className="navbar">
+        <div className="navbar-logo">
+          <h4>Jangmyun.shop</h4>
+        </div>
+        <div className="navbar-nav">
+          <a className="active" href="/">Home</a>
+          <a href="/cart">Cart</a>
+          <a href="/about">About</a>
+          <a href="/event">Event</a>
+        </div>
+      </div>
+    );
+  }
 
 function About(){
     let navigate = useNavigate();
@@ -26,4 +41,4 @@ function About(){
     );
   }
 
-export {About , Event};
+export {Navbar,About , Event};
