@@ -1,6 +1,7 @@
 import './css/App.css';
 import './css/Navbar.css';
 import './css/Product.css';
+import {About, Event} from './Component/Nav';
 import ProductDetail from './Component/ProductDetail';
 import {Row, Col, Container} from 'react-bootstrap';
 import data from './Data';
@@ -34,32 +35,10 @@ function App() {
           <Route path='location' element={<div>우리회사 위치</div>}/>
         </Route>
       </Routes>
+    </div>
+  );
+}
 
-    </div>
-  );
-}
-function About(){
-  let navigate = useNavigate();
-  return (
-    <div>
-      <h4>회사에 관하여</h4>
-      <button onClick={()=>{navigate('member')}}>멤버</button>
-      <button onClick={()=>{ navigate('location')}}>위치</button>
-      <Outlet></Outlet>
-    </div>
-  );
-}
-function Event(){
-  let navigate = useNavigate();
-  return(
-    <div>
-      <h4>오늘의 이벤트</h4>
-      <button onClick={()=>{navigate('one')}}>1</button>
-      <button onClick={()=>{ navigate('two')}}>2</button>
-      <Outlet></Outlet>
-    </div>
-  );
-}
 function Navbar() {
   return (
     <div className="navbar">
