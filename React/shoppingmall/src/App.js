@@ -17,7 +17,7 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path='*' />
-        <Route path='/' element={<><div className="main-bg"></div><ProductList shoes={shoes} productId={productId} setProductId={setProductId} /></>}></Route>
+        <Route path='/' element={<><div className="main-bg"></div><ProductList shoes={shoes} setShoes={setShoes} productId={productId} setProductId={setProductId} /></>}></Route>
         <Route path='/cart' element={<div>Cart</div>}></Route>
         <Route path='/detail/:id' element={<ProductDetail product={shoes}  />}></Route>
         <Route path='/event' element={<Event/>}>
@@ -29,6 +29,7 @@ function App() {
           <Route path='location' element={<div>우리회사 위치</div>}/>
         </Route>
       </Routes>
+      <div style={{height: '500px'}}></div>
     </div>
   );
 }
