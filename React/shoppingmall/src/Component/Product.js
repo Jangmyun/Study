@@ -4,6 +4,7 @@ import {Row, Col, Container} from 'react-bootstrap';
 import '../css/Product.css';
 import '../css/App.css';
 import styled from 'styled-components';
+import axios from 'axios';
 
 function ProductList({productId, shoes}){
   return (
@@ -19,6 +20,10 @@ function ProductList({productId, shoes}){
             })
           }
         </Row>
+        <button onClick={()=>{
+          axios.get('https://jangmyun.github.io/data/json/productData2.json')
+          .then((data)=>{console.log(data)});
+        }}>불러오기</button>
       </Container>
   );
 }
