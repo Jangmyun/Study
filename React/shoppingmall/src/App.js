@@ -7,14 +7,11 @@ import {Row, Col, Container} from 'react-bootstrap';
 import data from './Data';
 import {useState , useEffect} from 'react';
 import {Routes, Route, Link, useNavigate, Outlet, useParams} from 'react-router-dom';
-import styled from 'styled-components';
-
 
 
 function App() {
   let [shoes, setShoes] = useState(data);
   let [productId, setProductId] = useState(0);
-
   return ( 
     <div className="App">
       <Navbar></Navbar>
