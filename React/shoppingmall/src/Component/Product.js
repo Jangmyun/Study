@@ -1,6 +1,6 @@
 import {useState , useEffect} from 'react';
 import {Routes, Route, Link, useNavigate, Outlet, useParams} from 'react-router-dom';
-import {Row, Col, Container, Tab} from 'react-bootstrap';
+import {Row, Col, Container, Tab, Fade} from 'react-bootstrap';
 import '../css/Product.css';
 import '../css/App.css';
 import styled from 'styled-components';
@@ -93,15 +93,29 @@ function ProductDetail(props){
     </>
     );
   }
-function TabContent(props){ // 컴포넌트 내부에서 if문으로 html 요소 리턴시키면 if문 사용가능
-  if(props.tabContents ==0){
-    return <div>content 0</div>
-  }
-  if(props.tabContents == 1){
-    return <div>content 1</div>
-  }
-  if(props.tabContents == 2){
-    return <div>content 2</div>
-  }
+function TabContent({tabContents}){ // 컴포넌트 내부에서 if문으로 html 요소 리턴시키면 if문 사용가능
+  let [fade, setFade] = useState('');
+  
+  useEffect(()=>{
+    setFade('fade');
+    
+    return ()=>{
+      setFade('');
+    }
+  })
+  // if(props.tabContents ==0){
+  //   return <div>content 0</div>
+  // }
+  // if(props.tabContents == 1){
+  //   return <div>content 1</div>
+  // }
+  // if(props.tabContents == 2){
+  //   return <div>content 2</div>
+  // }
+  return(
+    <div className={'tab-content '+ fade}>
+      { [<div>content 0</div>, <div>content 1</div>, <div>content 2</div>][tabContents]}
+    </div>
+  );
 }
 export  {ProductList, ProductCard, ProductDetail};
