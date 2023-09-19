@@ -1,6 +1,6 @@
 import {useState , useEffect} from 'react';
 import {Routes, Route, Link, useNavigate, Outlet, useParams} from 'react-router-dom';
-import {Row, Col, Container} from 'react-bootstrap';
+import {Row, Col, Container, Tab} from 'react-bootstrap';
 import '../css/Product.css';
 import '../css/App.css';
 import styled from 'styled-components';
@@ -46,11 +46,11 @@ function ProductCard({id, src, title, content, price}){
 }
 
 function ProductDetail(props){
+    let [tabContents, setTabContents] = useState(0);
     let {id} =useParams(); // URL 파라미터에 입력한 내용 가져오기
     let idFound =  props.product.find(function(value){
       return id == value.id;
     });
-    
     useEffect(()=>{
       let timeLimit = document.getElementById('time-limit');
       let discountBanner = document.querySelector('.discount-banner');
@@ -61,9 +61,9 @@ function ProductDetail(props){
         }
       }, 1000);
     });
-    
     let productURL = `https://jangmyun.github.io/img/React/Product/product${+id+1}.jpg`; 
     return(
+      <>
       <Container className='detail' onClick={()=>{
         window.location.href = "/";}}>
         <Row>
@@ -78,7 +78,30 @@ function ProductDetail(props){
         </Row>
         <div className='discount-banner'><span id='time-limit'>2</span>초 이내 구매시 할인</div>
       </Container>
+      <div className='tab-buttons' style={{display:'flex'}}>
+        <button onClick={()=>{
+          setTabContents(0);
+        }}>button 0</button>
+        <button onClick={()=>{
+          setTabContents(1);
+        }}>button 1</button>
+        <button onClick={()=>{
+          setTabContents(2);
+        }}>button 2</button>
+      </div>
+      <TabContent tabContents={tabContents}></TabContent>
+    </>
     );
   }
-
+function TabContent(props){ // 컴포넌트 내부에서 if문으로 html 요소 리턴시키면 if문 사용가능
+  if(props.tabContents ==0){
+    return <div>content 0</div>
+  }
+  if(props.tabContents == 1){
+    return <div>content 1</div>
+  }
+  if(props.tabContents == 2){
+    return <div>content 2</div>
+  }
+}
 export  {ProductList, ProductCard, ProductDetail};
