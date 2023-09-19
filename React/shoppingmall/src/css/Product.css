@@ -9,3 +9,13 @@
     background: #FFF3D3;
     transition: opacity 0.5s;
 }
+
+.tab-content {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.fade {
+    opacity: 1;
+    
+}
