@@ -1,10 +1,12 @@
-import {useState , useEffect} from 'react';
+import {useState , useEffect, createContext} from 'react';
 import {Routes, Route, Link, useNavigate, Outlet, useParams} from 'react-router-dom';
 import {Row, Col, Container, Tab, Fade} from 'react-bootstrap';
 import '../css/Product.css';
 import '../css/App.css';
 import styled from 'styled-components';
 import axios from 'axios';
+
+let Context1 = createContext();
 
 function ProductList({productId, shoes, setShoes}){
   return (
@@ -97,11 +99,11 @@ function TabContent({tabContents}){ // 컴포넌트 내부에서 if문으로 htm
   let [fade, setFade] = useState('');
   
   useEffect(()=>{
-    setFade('fade');
-    
-    return ()=>{
-      setFade('');
-    }
+    setFade('');
+    setTimeout(()=>{
+      setFade('fade')
+    }, 10);
+
   })
   // if(props.tabContents ==0){
   //   return <div>content 0</div>
