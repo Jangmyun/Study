@@ -12,10 +12,10 @@
 
 .tab-content {
     opacity: 0;
-    transition: opacity 0.5s;
+    
 }
 
 .fade {
     opacity: 1;
-    
+    transition: all 1s;
 }
