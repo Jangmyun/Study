@@ -1,5 +1,3 @@
-import {useState} from 'react';
-
 let data = [
     {
       id : 0,
