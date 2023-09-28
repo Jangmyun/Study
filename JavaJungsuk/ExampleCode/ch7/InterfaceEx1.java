@@ -16,6 +16,10 @@ public class InterfaceEx1 {
         if(f instanceof Attackable){
             System.out.println("f는 Attackable 인터페이스 구현함");
         }
+
+        for ( String e : args){
+            System.out.println(e);
+        }
     }
 }
 
