@@ -1,10 +1,14 @@
 import {useState , useEffect, createContext} from 'react';
 import {Routes, Route, Link, useNavigate, Outlet, useParams} from 'react-router-dom';
-import {Row, Col, Container, Tab, Fade} from 'react-bootstrap';
+import {Row, Col, Container, Tab} from 'react-bootstrap';
 import '../css/Product.css';
 import '../css/App.css';
 import styled from 'styled-components';
 import axios from 'axios';
+import {useSelector, useDispatch} from 'react-redux'
+import {setCart} from './../store';
+
+
 
 let Context1 = createContext();
 
@@ -15,7 +19,7 @@ function ProductList({productId, shoes, setShoes}){
           { // Data.js에서 import 한 data 반복문 돌려서 ProductCard 생성
             shoes.map(function(value, index){
               return(
-                <ProductCard id={value.id} src={"https://jangmyun.github.io/img/React/Product/product"+ (index+1) +".jpg"}
+                <ProductCard id={value.id} src={"https://jangmyun.gitub.io/img/React/Product/product"+ (index+1) +".jpg"}
                 title={value.title} content={value.content} price={value.price} key={value.id}
                 />
               );
@@ -48,21 +52,20 @@ function ProductCard({id, src, title, content, price}){
 }
 
 function ProductDetail(props){
+    let dispatch = useDispatch();
     let [tabContents, setTabContents] = useState(0);
     let {id} =useParams(); // URL 파라미터에 입력한 내용 가져오기
     let idFound =  props.product.find(function(value){
       return id == value.id;
     });
+
     useEffect(()=>{
-      let timeLimit = document.getElementById('time-limit');
-      let discountBanner = document.querySelector('.discount-banner');
-      setInterval(()=>{
-        timeLimit.innerText--;
-        if(timeLimit.innerText<'0'){
-          discountBanner.style.opacity = 0;
-        }
-      }, 1000);
-    });
+      let watched = localStorage.getItem('watched');
+      watched = JSON.parse(watched);
+      watched.push(id);
+      localStorage.setItem('watched', watched);
+    })
+
     let productURL = `https://jangmyun.github.io/img/React/Product/product${+id+1}.jpg`; 
     return(
       <>
@@ -92,6 +95,7 @@ function ProductDetail(props){
         }}>button 2</button>
       </div>
       <TabContent tabContents={tabContents}></TabContent>
+      <button className='cart' >장바구니 담기</button>
     </>
     );
   }
@@ -99,12 +103,15 @@ function TabContent({tabContents}){ // 컴포넌트 내부에서 if문으로 htm
   let [fade, setFade] = useState('');
   
   useEffect(()=>{
-    setFade('');
     setTimeout(()=>{
       setFade('fade')
-    }, 10);
+    }, 100);
 
-  })
+    return ()=>{
+      setFade('');
+    }
+
+  },[]);
   // if(props.tabContents ==0){
   //   return <div>content 0</div>
   // }
