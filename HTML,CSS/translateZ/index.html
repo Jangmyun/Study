@@ -7,8 +7,45 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="box">box</div>
-    </div>
+    <header>
+        <a class="logo" href="/">
+            <span>Scenes</span>
+            <span>The World</span>
+        </a>
+        <div class="mobile-nav">
+            <input id="nav-toggle" type="checkbox">
+            <label class="nav-button-container" for="nav-toggle">
+                <div class="nav-button"></div>
+            </label>
+        </div>
+    </header>
+    <main>
+        <ul class="projects">
+            <li class="projectLi">
+                <div class="projectContainer">
+                    <a href="/nintendo">Nintendo Switch</a>
+                </div>
+            </li>
+            <li class="projectLi" data-startYear="2023">
+                <div class="projectContainer">
+                    <a href="/nintendo">픽셀 페인터</a>
+                </div>
+            </li>
+            <li class="projectLi">
+                <div class="projectContainer"></div>
+            </li>
+            <li class="projectLi">
+                <div class="projectContainer"></div>
+            </li>
+            <li class="projectLi">
+                <div class="projectContainer"></div>
+            </li>
+            <li class="projectLi">
+                <div class="projectContainer"></div>
+            </li>
+        </ul>
+    </main>
+
+    <script src="./js/app.js"></script>
 </body>
 </html>
