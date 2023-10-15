@@ -1,5 +1,3 @@
-package algorithm.greedy;
-
 import java.io.*;
 
 public class Change {

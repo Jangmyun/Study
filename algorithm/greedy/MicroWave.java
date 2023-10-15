@@ -1,4 +1,3 @@
-package algorithm.greedy;
 
 import java.io.*;
 

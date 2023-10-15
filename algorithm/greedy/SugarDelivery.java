@@ -1,4 +1,3 @@
-package algorithm.greedy;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,23 +14,21 @@ public class SugarDelivery {
     ArrayList<Integer> checkResult = new ArrayList<>();
     int result = 0;
 
-    for (int i = 0; N%5 <= N - (i * 5); i++) {
+    for (int i = 0; N % 5 <= N - (i * 5); i++) {
       result = 0;
 
       int leftSugar = N - (i * 5);
       result += i;
 
-      if( leftSugar == 0){
+      if (leftSugar == 0) {
         resultArrayList.add(result);
-      }
-      else {
-        result += leftSugar/3;
-        leftSugar = leftSugar%3;
+      } else {
+        result += leftSugar / 3;
+        leftSugar = leftSugar % 3;
 
-        if(leftSugar != 0) {
+        if (leftSugar != 0) {
           resultArrayList.add(-1);
-        }
-        else {
+        } else {
           resultArrayList.add(result);
         }
       }

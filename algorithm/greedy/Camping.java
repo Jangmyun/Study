@@ -1,6 +1,6 @@
 // 4796번 : 캠핑
 
-package algorithm.greedy;
+
 
 import java.io.*;
 import java.util.ArrayList;
