@@ -1,0 +1,23 @@
+@media (min-width: 768px) {
+  header {
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    .logo {
+        span {
+            font-size: 40px;
+        }
+    }
+
+    .nav-button-container {
+      display: none;
+    }
+    .info {
+        width: 100%;
+      padding: 0;
+      position: static;
+      display: block;
+      z-index: inherit;
+    }
+  }
+}

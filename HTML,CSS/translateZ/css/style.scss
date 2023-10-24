@@ -21,7 +21,7 @@ body {
 body {
     margin: 0;
     padding: 0;
-    background-color: #4901FF;
+    background-color: #49ff01;
 }
 * {
     box-sizing: border-box;
@@ -100,7 +100,7 @@ header {
     }
     
 
-
+    // information
     .info {
         position: fixed;
         display: none;
@@ -114,7 +114,7 @@ header {
     }
 
     .info {
-        display: flex;
+        display: none;
         color: white;
         font-family: 'Elice DX Neolli','Druk-Wide-Medium';
 
@@ -131,10 +131,10 @@ header {
             transform: rotateY(15deg);
         }
     }
+    // if nav-toggle input is checked info displays contents
     #nav-toggle:checked ~ .info {
         display: block;
     }
-
 }
 
 main {

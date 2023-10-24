@@ -20,7 +20,7 @@ body {
 body {
   margin: 0;
   padding: 0;
-  background-color: #4901FF;
+  background-color: #49ff01;
 }
 
 * {
@@ -106,7 +106,7 @@ header .info {
   background-color: rgba(73, 1, 255, 0.85);
 }
 header .info {
-  display: flex;
+  display: none;
   color: white;
   font-family: "Elice DX Neolli", "Druk-Wide-Medium";
 }
