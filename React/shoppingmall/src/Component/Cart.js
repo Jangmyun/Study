@@ -1,11 +1,17 @@
-import { useSelector } from 'react-redux';
+import { useSelector , useDispatch } from 'react-redux';
 import './../css/Cart.css';
+import {setUser} from './../store';
+import { addCount } from './../store';
+
 
 function Cart(){
-    let a = useSelector((state)=>{return state})
-    console.log(a.user);
+    let cart = useSelector((state)=>{return state.cart})
+    let user = useSelector((state)=>{return state.user});
+    let dispatch = useDispatch();
     return (
+
         <div className='table-container'>
+            <div>{user.name}({user.age})의 장바구니</div>
             <table className='cart-table'>
                 <thead className='cart-table-header'>
                     <tr key="">
@@ -16,12 +22,22 @@ function Cart(){
                     </tr>
                 </thead>
                 <tbody className='cart-table-body'>
-                    <tr key="">
-                        <td>1</td>
-                        <td>hi</td>
-                        <td>hi</td>
-                        <td>hi</td>
-                    </tr>
+                    {
+                        cart.map((value, index)=>{
+                            return (
+                                <tr key={index}>
+                                    <td>{value.id}</td>
+                                    <td>{value.name}</td>
+                                    <td>{value.count}</td>
+                                    <td>
+                                        <button key={index} onClick={(e)=>{
+                                            dispatch(addCount(cart[index].id));
+                                        }}>+</button>
+                                    </td>
+                                </tr>
+                            );
+                        })
+                    }
                 </tbody>
             </table>
         </div>

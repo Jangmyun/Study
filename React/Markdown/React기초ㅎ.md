@@ -315,3 +315,91 @@ function Detail() {
 
 
 
+
+
+## styled-components
+
+#### styled-components 쓰면 css 파일에 스타일링 안해도 js 코드로 컴포넌트에 스타일 넣을 수 있음
+
+```react
+let YellowBtn = styled.button`
+	background: yellow;
+	padding: 10px;
+`
+
+return(
+	<YellowBtn></YellowBtn>
+)
+```
+
+
+
+
+
+#### props 문법 사용하면 같은 컴포넌트 재활용할 수 있음
+
+```react
+function App(){
+  let Btn = styled.button`
+  	background : ${ props => props.bg};
+  	color : black;
+  	padding : 10px;
+  `
+  return(
+  	<Btn bg="blue"></Btn>
+  );
+}
+
+```
+
+```react
+let Btn = styled.button`
+	background : ${ props => props.bg };
+	color : ${props=> props.bg == 'blue' ? 'white' : 'black'};
+	padding 10px;
+`
+```
+
+#### 위에 처럼 조건문 넣을수도 있음
+
+```react
+let NewBtn = styled.button(Btn)`
+	margin : 10px;
+`
+```
+
+#### 기존 컴포넌트 가져와서 스타일링 추가도 됨
+
+
+
+## Lifecycle
+
+### 컴포넌트의 mount, update, unmount 과정 중간에 코드 실행 가능
+
+```react
+//옛날방식
+class Component1 extends React.Component {
+  componentDidMount(){
+    // 컴포넌트 mount 시 실행할 코드
+  }
+  componentDidUpdate(){
+    // 컴포넌트 update 시 실행할 코드
+  }
+  componentWillUnmount(){
+    // 컴포넌트 unmount시 실행할 코드
+  }
+}
+
+//요새 방식
+import {useEffect} from "react";
+function Component1(props){
+  useEffect(()=>{
+    // mount update시 실행할 코드
+  })
+}
+```
+
+
+
+### 근데 사실 `useEffect` 바깥에 코드 적어도 동작하는데 `useEffect`는 HTML 렌더링 끝내고 동작함<br>서버에서 데이터 가져오거나 타이머 사용할 때 사용하면 좋을듯
+

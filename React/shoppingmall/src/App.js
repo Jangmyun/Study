@@ -7,9 +7,13 @@ import {Row, Col, Container} from 'react-bootstrap';
 import data from './Data';
 import {useState , useEffect} from 'react';
 import {Routes, Route, Link, useNavigate, Outlet, useParams} from 'react-router-dom';
+import {Cart} from './Component/Cart';
 
 
 function App() {
+  useEffect(()=>{
+    localStorage.setItem('watched', JSON.stringify( [] ));
+  },[]);
   let [shoes, setShoes] = useState(data);
   let [productId, setProductId] = useState(0);
   return ( 
@@ -18,8 +22,10 @@ function App() {
       <Routes>
         <Route path='*' />
         <Route path='/' element={<><div className="main-bg"></div><ProductList shoes={shoes} setShoes={setShoes} productId={productId} setProductId={setProductId} /></>}></Route>
-        <Route path='/cart' element={<div>Cart</div>}></Route>
+        <Route path='/cart' element={<Cart></Cart>}></Route>
         <Route path='/detail/:id' element={<ProductDetail product={shoes}  />}></Route>
+
+
         <Route path='/event' element={<Event/>}>
           <Route path='one' element={<div>첫 주문시 30% 할인</div>} />
           <Route path='two' element={<div>생일기념 할인쿠폰 증정</div>}/>
