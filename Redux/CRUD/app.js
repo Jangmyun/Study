@@ -14,7 +14,7 @@ function toc(){
     var state = store.getState();
     let liTitles = ``;
     state.contents.forEach(element => {
-        liTitles +=  `
+        liTitles +=   `
             <li>
                 <a onclick="
                     event.preventDefault();
