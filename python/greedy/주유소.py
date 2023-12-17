@@ -1,10 +1,15 @@
 N = int(input())
 
-roadLength = list(map(int, input().split()))
+roadDistance = list(map(int, input().split()))
 city = list(map(int, input().split()))
 
 isCheaper = False
-result = 0
+currentPrice = city[0]
+result = city[0]*roadDistance[0]
 
-for i in range(len(city)-1):
-    city[i]
+for i in range(1, len(roadDistance)):
+    if currentPrice > city[i]:
+        currentPrice = city[i]
+    result += currentPrice*roadDistance[i]
+
+print(result)
