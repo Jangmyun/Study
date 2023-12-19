@@ -1,12 +1,17 @@
 N = int(input())
 cards = []
-
+result = 0
+answer = 0
 for _ in range(N):
     cards.append(int(input()))
 
 cards.sort()
 
-result = cards[0]+cards[1]
+if N != 0:
+    result = 1
+    for i in range(2, len(cards)):
+        result += 1
+elif N == 1:
+    result = 0
 
-for i in range(2, len(cards)):
-    result = result + result+cards[i]
+print(result)
