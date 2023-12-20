@@ -1,20 +1,14 @@
 N = input()
-NList = []
-result = ""
 
-for i in N:
-    NList.append(int(i))
-
-NList.sort()
-
-if NList[-1] != 0:
+if '0' not in N:
     print(-1)
 else:
-    for i in range(len(NList)):
-        if i == 0:
-            result = NList[i]
-        else:
-            tmp = result + NList[i]
-            result = tmp
-
-print(result)
+    sum = 0
+    for i in N:
+        sum += int(i)
+    if sum % 3 != 0:
+        print(-1)
+    else:
+        N = sorted(N, reverse=True)
+        result = ''.join(N)
+        print(result)
