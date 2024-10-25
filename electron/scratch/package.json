@@ -1,0 +1,14 @@
+{
+  "name": "scratch",
+  "version": "1.0.0",
+  "description": "example eclectron application",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jangmyun",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.0.2"
+  }
+}
