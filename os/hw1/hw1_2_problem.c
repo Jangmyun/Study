@@ -48,32 +48,37 @@ int main()
 
 	// count number of words
 	int i;
-	int countedWord = 0;
-	short currCharFlag = 0; // current character is in a word? 0=false
-	for(i=0; i<len; i++){
-		// if current character is white space => currCharFlag = false
-		if(isspace(text[i])){
-			currCharFlag = 0;
-			continue;
-		}
-		
-		if(!currCharFlag){
-			currCharFlag = 1;
-			countedWord++;
-		}
-	}
-	
-	printf("%d",countedWord);
 
 	for(i=0; i<prompt_len; i++){ 
 		printf("%c",' ');
 	}
 
+	int countedWord = 0;
+	short currCharFlag = 0; // current character is in a word? 0=false
+	for(i=0; i<len; i++){
+		// if current character is white space => currCharFlag = false
+		if(isspace(text[i])){
+			if(currCharFlag ){
+				printf("%c",']');
+			}else {
+				printf("%c",text[i]);
+			}
+			currCharFlag = 0;
+			continue;
+		}
+		// else if currChar is not in a word
+		if(!currCharFlag){
+			printf("%c",'[');
+			countedWord++;
+		}else {
+			printf("%c",' ') ;
+		}
+		currCharFlag = 1; 
+	}
+	if(currCharFlag){
+		printf("%c", ']');
+	}
 	
-	
-
-
-
 	putchar('\n');
 	printf("Bye!\n");
 
