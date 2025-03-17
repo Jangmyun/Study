@@ -20,7 +20,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-
+#include <stdlib.h>
 #define MAX_TEXT 256
 
 int main()
@@ -40,11 +40,37 @@ int main()
 	//		  store each word in the substring array
 	//		  - start, end: the start and end indices of the word
 	//		  - substr: the word
+	if(len<1){
+		putchar('\n'); 
+		printf("Bye!\n");
+		return 0;
+	}
+
+	// count number of words
 	int i;
-	for(i=0; i<prompt_len; i++){
+	int countedWord = 0;
+	short currCharFlag = 0; // current character is in a word? 0=false
+	for(i=0; i<len; i++){
+		// if current character is white space => currCharFlag = false
+		if(isspace(text[i])){
+			currCharFlag = 0;
+			continue;
+		}
+		
+		if(!currCharFlag){
+			currCharFlag = 1;
+			countedWord++;
+		}
+	}
+	
+	printf("%d",countedWord);
+
+	for(i=0; i<prompt_len; i++){ 
 		printf("%c",' ');
 	}
 
+	
+	
 
 
 
