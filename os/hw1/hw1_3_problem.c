@@ -31,6 +31,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 #define MAX_TEXT 256
 #define MAX_LEN 128
@@ -43,6 +44,8 @@ typedef struct {
 
 Substring words[SIZE];	 	// array of structures to store words
 int no_word = 0;			// the number of words
+
+char *substr(int start, int end, char *str);
 
 int main()
 {
@@ -61,15 +64,39 @@ int main()
 	//		  store each word in the substring array
 	//		  - start, end: the start and end indices of the word
 	//		  - substr: the word
+	short currCharFlag = 0;
+	int i;
+	for(i=0; i<len; i++){
+		if(isspace(text[i])){ // when current char is whitespace
+			if(currCharFlag){
+				// end of word 
+				words[no_word].end = i;				
 
+				char *temp = substr(words[no_word].start,words[no_word].end-1, text);
+				strcpy(words[no_word].substr, temp);
+				free(temp);
 
+				no_word++;
+			}
+			currCharFlag = 0;
+		}else { // when curr char is in word
+			if(!currCharFlag){
+				// start of word 
+				words[no_word].start = i;
+			}
+			currCharFlag = 1;
+		}
+	}
 
+	if(currCharFlag) { 
+		// if last char was not white space
+		words[no_word].end = len;
+		char *temp = substr(words[no_word].start,words[no_word].end-1, text);
+		strcpy(words[no_word].substr, temp);
+		free(temp);
 
-
-
-
-
-
+		no_word++; 
+	}
 
 	// DO NOT modify the following four lines
 	putchar('\n');
@@ -82,3 +109,9 @@ int main()
 	return 0;
 }
 
+char *substr(int start, int end, char *str) {
+	char *newStr = (char *)malloc(sizeof(char)*(end-start+2));
+	strncpy(newStr, str+start, end-start+1);
+	newStr[end-start+1] = '\0'; // ensure null termination!!!
+	return newStr;
+}
