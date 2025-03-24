@@ -1,0 +1,6 @@
+{
+  "name": "prettier-test",
+  "version": "2.5.1",
+  "description": "Prettier is and opinionated code formatter",
+  "bin": "./bin-prettier.js"
+}
