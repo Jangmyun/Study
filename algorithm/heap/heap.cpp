@@ -36,6 +36,15 @@ void heap_sort(vector<int> &arr) {
 	}
 }
 
+void heap_extract_max(vector<int> arr){
+  if(arr.size()<1){
+    return;
+  }
+
+  int max = arr[0];
+  arr[0] = arr[arr.size()-1];
+}
+
 int main() {
 	vector<int> arr = {1, 10,3,9,5,15,44};
 
