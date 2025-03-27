@@ -98,6 +98,36 @@ int main()
 		no_word++; 
 	}
 
+	short currCharInWord = 0;
+	
+	for(i=0; i<prompt_len; i++){
+		printf("%c",' ');	
+	}
+
+	for(i=0; i<len; i++){
+		const char currChar = text[i];
+
+		if(isspace(currChar)){
+			if(currCharInWord){
+				printf("%c",']');
+			}else {
+				printf("%c", currChar);
+			}
+			currCharInWord = 0;
+		}else {
+			if(currCharInWord){
+				printf("%c", ' ');
+			}else {
+				printf("%c", '[');
+			}
+			currCharInWord = 1;
+		}
+	}
+
+	if(currCharInWord){
+		putchar(']');
+	}
+
 	// DO NOT modify the following four lines
 	putchar('\n');
 	putchar('\n');
