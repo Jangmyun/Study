@@ -9,27 +9,41 @@ void printArr(int arr[], int n) {
   for (int i = 0; i < n; i++) cout << arr[i] << " ";
 }
 
-void insertion_sort(int arr[], int n) {
-  int key, j;
+void heapify(int arr[], int n, int i) {
+  int largest = i;
+  int left = 2 * i + 1;
+  int right = 2 * i + 2;
+  g_counter += 3;
 
-  for (int i = 1; i < n; i++) {
-    key = arr[i];
+  if (left < n && arr[left] > arr[largest]) {
+    largest = left;
     g_counter++;
-
-    j = i - 1;
+  }
+  if (right < n && arr[right] > arr[largest]) {
+    largest = right;
     g_counter++;
+  }
+  if (largest != i) {
+    swap(arr[i], arr[largest]);
+    g_counter++;
+    heapify(arr, n, largest);
+  }
+}
 
-    while (j >= 0 && arr[j] > key) {
-      g_counter++;
+void build_heap(int arr[], int n) {
+  for (int i = n / 2 - 1; i >= 0; i--) {
+    heapify(arr, n, i);
+    g_counter++;
+  }
+}
 
-      arr[j + 1] = arr[j];
-      g_counter++;
+void heap_sort(int arr[], int n) {
+  build_heap(arr, n);
 
-      j--;
-      g_counter++;
-    }
-
-    arr[j + 1] = key;
+  for (int i = n - 1; i > 0; i--) {
+    swap(arr[0], arr[i]);
+    g_counter++;
+    heapify(arr, i, 0);
     g_counter++;
   }
 }
@@ -58,7 +72,8 @@ int main() {
   }
   n++;
 
-  insertion_sort(arr, n);
+  heap_sort(arr, n);
   cout << "g_count: " << g_counter << endl;
+
   return 0;
 }
