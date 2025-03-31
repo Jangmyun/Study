@@ -1,8 +1,11 @@
 #include <stdio.h>
-#include <sys/types.h>
+#include <stdlib.h>
 #include <dirent.h>
+#include <sys/stat.h>
+#include <string.h>
 
 int ls(char *path, int recur, int level);
+char* generateIndentString(int level);
 
 int main (int argc, char *argv[]){
 	if(argc == 1){
@@ -18,6 +21,7 @@ int ls(char *path, int recur, int level){
 
 	DIR* directory = NULL;
 	struct dirent* entry = NULL;
+	struct stat st;
 
 	// path validation check
 	if(path == NULL){
@@ -31,11 +35,13 @@ int ls(char *path, int recur, int level){
 		printf("Cannot open %s.\n", path);
 		return -1;
 	}
-
+		
 	printf("cur_dir = %s\n", path);
 
+
 	while((entry = readdir(directory)) != NULL){
-		printf("%s", entry->d_name);
+		stat(entry->d_name, &st);
+		printf("%s\n", entry->d_name);
 	}
 
 
@@ -43,4 +49,13 @@ int ls(char *path, int recur, int level){
 	
 	closedir(directory);
 	return 0;
+}
+
+char* generateIndentString(int level){
+	char* str = (char*)malloc(level*4);
+	if(!str) return NULL;
+
+	memset(str, ' ', level*4);
+	str[level*4] = '\0';
+	return str;
 }
