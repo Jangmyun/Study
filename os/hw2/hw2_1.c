@@ -38,14 +38,13 @@ int ls(char *path, int recur, int level){
 		
 	printf("cur_dir = %s\n", path);
 
-
 	while((entry = readdir(directory)) != NULL){
-		stat(entry->d_name, &st);
-		printf("%s\n", entry->d_name);
+		stat(entry->d_name, &st); // entry file(or directory)'s state to var st
+
+		char* indent = generateIndentString(level); // indent string allocation
+		printf("%s%-32s %04x %05d %10lld\n", indent, entry->d_name, entry->d_type, st.st_uid, st.st_size);
+		free(indent); // free indentation string memory
 	}
-
-
-
 	
 	closedir(directory);
 	return 0;
