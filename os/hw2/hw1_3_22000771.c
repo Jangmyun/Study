@@ -159,8 +159,10 @@ int main()
 
 		words[no_word].end = len;
 		char *temp = substr(words[no_word].start, words[no_word].end-1, text);
+		
 		strcpy(words[no_word].substr, temp);
 		free(temp);
+		temp = NULL;  // prevent dangling pointer issue
 
 		no_word++;
 	}
@@ -179,6 +181,12 @@ int main()
 
 char *substr(int start, int end, char *str) {
 	char *newStr = (char *)malloc(sizeof(char)*(end-start+2));
+
+	if(newStr == NULL){
+		printf("string memory allocation failed.\n");
+		return newStr;
+	}
+
 	strncpy(newStr, str+start, end-start+1);
 	newStr[end-start+1] = '\0'; // ensure null termination!!!
 	return newStr;
