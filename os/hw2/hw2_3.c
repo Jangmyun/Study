@@ -114,11 +114,13 @@ int runCommand(char **argv){
 	}
 
 	if(!strcmp(argv[0], "ls")) {
-		return ls(argv[1]? argv[1]: ".", 0, 0);
+		ls(argv[1]? argv[1]: ".", 0, 0);
+		return 1;
 	}
 
 	if(!strcmp(argv[0], "recur_ls")) {
-		return ls(argv[1]? argv[1]: ".", 1, 0);
+		ls(argv[1]? argv[1]: ".", 1, 0);
+		return 1;
 	}
 
 	if(!strcmp(argv[0], "md")){
