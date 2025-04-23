@@ -44,11 +44,8 @@ int main()
 
 	// TO DO: create three threads using ThreadFn and bar[t]
 	for(int i=0; i<3; i++){
-		pthread_create(&tid[i], NULL, ThreadFn, (void*)&bar[i]);
+		pthread_create(&tid[i], NULL, &ThreadFn, (void*)&bar[i]);
 	}
-
-	gotoxy(1, screen_height);
-	printf("Bye!\n");
 
 	// wait for the ESC key
 	while(1){

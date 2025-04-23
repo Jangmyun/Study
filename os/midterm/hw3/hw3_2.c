@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <wait.h>
 #include <errno.h>
+#include <signal.h>
 
 #define MAX_LEN 512
 #define MAX_PATH 256
@@ -15,11 +16,13 @@
 #define FALSE 0
 
 #define	DEBUG			// commenting out this line disables debugging messages
+#define DEBUG_FOR_TEST
 
 int SplitArgs(char *input, char *args[], int max_arg);
 
 int main()
 {
+	signal(SIGCHLD, SIG_IGN);
 	printf("Welcome to my_shell1!\n");
 
 	char prompt[32] = "my_shell $";
@@ -50,7 +53,11 @@ int main()
 
 		int wait_for_child = TRUE;
 		// TO DO: if the last argument is "&", remove it and set wait_for_child to zero
-		if(!strcmp(args[no_arg-1], "&")) wait_for_child = FALSE;
+		if(!strcmp(args[no_arg-1], "&")) {
+			wait_for_child = FALSE;
+			args[no_arg-1] = NULL;
+			no_arg--;
+		}
 		
 		// TO DO: if the command is "exit", break the loop
 		if(!strcmp(args[0], "exit")) break;
@@ -62,9 +69,9 @@ int main()
 				printf("\033[31m" " Error:" "\033[0m" " %s\n", strerror(errno));
 				continue;
 			}
-#ifdef DEBUG
+#ifdef DEBUG_FOR_TEST
 			printf("Directory Changed: %s\n", args[1]);
-#endif	//	DEBUG
+#endif	//	DEBUG_FOR_TEST
 			continue;
 		}
 
@@ -77,6 +84,10 @@ int main()
 			printf("\033[31m" " Error:" "\033[0m" "%s\n", strerror(errno));
 			exit(1);
 		}else if(child_pid == 0) {
+#ifdef DEBUG_FOR_TEST
+			printf("Child PID: %d\n", child_pid);
+
+#endif	// DEBUG_FOR_TEST
 			execvp(args[0], args);
 			printf("\033[31m" " Error:" "\033[0m"  " %s\n", strerror(errno));
 			exit(1);
