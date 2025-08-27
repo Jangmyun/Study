@@ -31,6 +31,8 @@ void test_memory_order_relaxed() {
   }
 }
 
+void test_memory_order_acquire_release() {}
+
 int main() {
   // tests
   test_memory_order_relaxed();
